@@ -7,7 +7,7 @@ import { selectContacts } from 'redux/contacts/contacts-selectors';
 
 export const PhoneBookForm = ({ toggleModal }) => {
 	const [name, setName] = useState('');
-	const [phone, setPhone] = useState('');
+	const [number, setNumber] = useState('');
 
 	const dispatch = useDispatch();
 	const contacts = useSelector(selectContacts);
@@ -17,8 +17,8 @@ export const PhoneBookForm = ({ toggleModal }) => {
 			case "name":
 				setName(e.target.value);
 				break;
-			case "phone":
-				setPhone(e.target.value);
+			case "number":
+				setNumber(e.target.value);
 				break;
 			default: return;
 		}
@@ -34,9 +34,9 @@ export const PhoneBookForm = ({ toggleModal }) => {
 			return;
 		}
 
-		dispatch(addContact({ name, phone }))
+		dispatch(addContact({ name, number }))
 		setName("");
-		setPhone("");
+		setNumber("");
 	}
 
 	return <Form onSubmit={handleSubmit}>
@@ -56,12 +56,12 @@ export const PhoneBookForm = ({ toggleModal }) => {
 		<FormWrapper>
 			<FormField
 				type="tel"
-				name="phone"
+				name="number"
 				placeholder="number"
 				pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
 				title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
 				required
-				value={phone}
+				value={number}
 				onChange={handleInputChange}
 			/>
 			<FormLable><FaPhoneAlt /></FormLable>

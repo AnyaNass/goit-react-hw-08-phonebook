@@ -16,7 +16,7 @@ export const ContactsList = () => {
 					<ItemInfo>
 						<Info><FaMobileAlt /></Info>
 						<Info>{item.name}:</Info>
-						<Info>{item.phone}</Info>
+						<Info>{item.number}</Info>
 					</ItemInfo>
 					<DeleteButton type="button" onClick={() => dispatch(deleteContact(item.id))}><FaRegTrashAlt /></DeleteButton>
 				</ListItem>
