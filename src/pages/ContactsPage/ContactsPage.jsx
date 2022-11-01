@@ -30,7 +30,7 @@ export const ContactsPage = () => {
 	}
 
 	return <>
-		<Container text="PhoneBook">
+		<Container text="Add contact">
 			{showModal && <Modal onClose={toggleModal}>
 				<Alert text="This name is already in contacts." />
 			</Modal>}

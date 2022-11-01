@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { MdOutlineAlternateEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FiLogIn } from "react-icons/fi";
 import { login } from "redux/auth/auth-operations";
+import { Container } from "components/Container/Container";
+import { Form, FormWrapper, FormField, FormLable, AddButton } from "./LoginPage.styled";
 
 export const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -28,9 +33,18 @@ export const LoginPage = () => {
 		setPassword('');
 	}
 
-	return <form onSubmit={loginFormHandler}>
-		<input type="email" name="email" value={email} onChange={handleChange} />
-		<input type="password" name="password" value={password} onChange={handleChange} />
-		<button type="submit">Login</button>
-	</form>
+	return <Container text="Login">
+		<Form onSubmit={loginFormHandler}>
+			<FormWrapper>
+				<FormField type="email" name="email" value={email} placeholder="Your email" onChange={handleChange} />
+				<FormLable><MdOutlineAlternateEmail /></FormLable>
+			</FormWrapper>
+
+			<FormWrapper>
+				<FormField type="password" name="password" value={password} placeholder="Your password" onChange={handleChange} />
+				<FormLable><RiLockPasswordLine /></FormLable>
+			</FormWrapper>
+			<AddButton type="submit"><FiLogIn /></AddButton>
+		</Form>
+	</Container>
 }

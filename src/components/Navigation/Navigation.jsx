@@ -1,14 +1,14 @@
-import { NavItem } from "./Navigation.styled"
+import { NavItemLink, NavList } from "./Navigation.styled"
 
 export const Navigation = () => {
 	return <nav>
-		<ul>
+		<NavList>
 			<li>
-				<NavItem to="/register">Registration</NavItem>
+				<NavItemLink to="/" end>Registration</NavItemLink>
 			</li>
 			<li>
-				<NavItem to="/login">Login</NavItem>
+				<NavItemLink to="/login">Login</NavItemLink>
 			</li>
-		</ul>
+		</NavList>
 	</nav>
 }
