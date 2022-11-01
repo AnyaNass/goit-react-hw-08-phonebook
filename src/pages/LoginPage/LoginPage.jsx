@@ -4,11 +4,12 @@ import { selectError } from "redux/auth/auth-selectors";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { login } from "redux/auth/auth-operations";
 import { Container } from "components/Container/Container";
 import { Form, FormWrapper, FormField, FormLable, AddButton } from "./LoginPage.styled";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export const LoginPage = () => {
 	const dispatch = useDispatch();
