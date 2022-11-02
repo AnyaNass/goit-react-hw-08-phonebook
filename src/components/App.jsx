@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshUser } from "redux/auth/auth-operations";
 import { Routes, Route } from "react-router-dom";
+import { refreshUser } from "redux/auth/auth-operations";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
+import { selectIsRefreshingUser } from "redux/auth/auth-selectors";
 import { Layout } from "./Layout/Layout";
 import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 import { LoginPage } from "pages/LoginPage/LoginPage";
 import { ContactsPage } from "pages/ContactsPage/ContactsPage";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
-import { selectIsRefreshingUser } from "redux/auth/auth-selectors";
+
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const App = () => {
 	useEffect(() => {
 		dispatch(refreshUser())
 	}, [dispatch])
+
 
 	return (<Routes>
 		<Route path="/" element={<Layout />}>
