@@ -4,20 +4,16 @@ import { selectError } from "redux/auth/auth-selectors";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { login } from "redux/auth/auth-operations";
 import { Container } from "components/Container/Container";
+import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
 import { Form, FormWrapper, FormField, FormLable, AddButton } from "./LoginPage.styled";
 
 
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const error = useSelector(selectError);
-	const notifyError = () => toast.error("Wrong email or password", {
-		position: "top-left",
-		theme: "dark",
-	});
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -38,16 +34,12 @@ export const LoginPage = () => {
 	const loginFormHandler = e => {
 		e.preventDefault();
 		dispatch(login({ email, password }));
-		if (error) {
-			notifyError();
-			return;
-		}
 		setEmail('');
 		setPassword('');
 	}
 
 	return <Container text="Login">
-		<ToastContainer />
+		{error && <ErrorMessage text={error} />}
 		<Form onSubmit={loginFormHandler}>
 			<FormWrapper>
 				<FormField type="email" name="email" value={email} placeholder="Your email" required onChange={handleChange} />

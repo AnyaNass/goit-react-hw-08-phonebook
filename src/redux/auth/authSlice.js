@@ -6,7 +6,7 @@ const initialState = {
 	token: null,
 	isLoggedIn: false,
 	isLoading: false,
-	error: false,
+	error: null,
 	isRefreshingUser: false
 }
 
@@ -16,7 +16,7 @@ const authSlice = createSlice({
 	extraReducers: {
 		[register.pending]: (state) => {
 			state.isLoading = true;
-			state.error = false;
+			state.error = null;
 		},
 		[register.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
@@ -26,11 +26,10 @@ const authSlice = createSlice({
 		},
 		[register.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			state.error = true;
+			state.error = payload;
 		},
 		[login.pending]: (state) => {
 			state.isLoading = true;
-			state.error = false;
 		},
 		[login.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
@@ -40,11 +39,10 @@ const authSlice = createSlice({
 		},
 		[login.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			state.error = true;
+			state.error = payload;
 		},
 		[logout.pending]: (state) => {
 			state.isLoading = true;
-			state.error = false;
 		},
 		[logout.fulfilled]: (state) => {
 			state.user = { name: null, email: null };
@@ -53,11 +51,10 @@ const authSlice = createSlice({
 		},
 		[logout.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			state.error = true;
+			state.error = payload;
 		},
 		[refreshUser.pending]: (state) => {
 			state.isRefreshingUser = true;
-			state.error = false;
 		},
 		[refreshUser.fulfilled]: (state, { payload }) => {
 			state.user = payload;
@@ -66,7 +63,7 @@ const authSlice = createSlice({
 		},
 		[refreshUser.rejected]: (state, { payload }) => {
 			state.isRefreshingUser = false;
-			state.error = true;
+			state.error = payload;
 		},
 	}
 })

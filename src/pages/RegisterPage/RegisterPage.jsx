@@ -4,21 +4,16 @@ import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { selectError } from "redux/auth/auth-selectors";
 import { Container } from "components/Container/Container";
 import { register } from "redux/auth/auth-operations";
 import { Form, FormWrapper, FormField, FormLable, AddButton, Text, LinkToLogin } from "./RegisterPage.styled"
+import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
 
 export const RegisterPage = () => {
 	const dispatch = useDispatch();
 	const error = useSelector(selectError);
-
-	const notifyError = () => toast.error("Something went wrong. Try again", {
-		position: "top-left",
-		theme: "dark",
-	});
 
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -43,17 +38,13 @@ export const RegisterPage = () => {
 	const registrationFormHandler = e => {
 		e.preventDefault();
 		dispatch(register({ name, email, password }));
-		if (error) {
-			notifyError();
-			return;
-		}
 		setName('');
 		setEmail('');
 		setPassword('');
 	}
 
 	return <Container text="Registration">
-		<ToastContainer />
+		{error && <ErrorMessage text={error} />}
 		<Form onSubmit={registrationFormHandler}>
 			<FormWrapper>
 				<FormField type="text" name="name" value={name} placeholder="Your name" required onChange={handleChange} />
