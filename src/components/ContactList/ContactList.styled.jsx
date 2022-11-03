@@ -56,3 +56,25 @@ right: -25px;
 		transform: scale(1.2);
 	}
 `
+export const EditBtn = styled.button`
+	position: absolute;
+	right: -75px;
+	top: 50%;
+ 	transform: translateY(-50%) scale(1);
+	width: 50px;
+	height: 50px;
+	background-color: #000;
+	color: #fff;
+	font-weight: 900;
+	font-size: 16px;
+	border-radius: 50%;
+	border: 3px solid rgb(28, 27, 27);
+	transition: transform 250ms linear;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	:hover, :focus {
+		transform: translateY(-50%) scale(1.2);
+	}
+`
