@@ -6,6 +6,8 @@ const initialState = {
 	token: null,
 	isLoggedIn: false,
 	isLoading: false,
+	errorLogin: null,
+	errorRegister: null,
 	error: null,
 	isRefreshingUser: false
 }
@@ -16,7 +18,7 @@ const authSlice = createSlice({
 	extraReducers: {
 		[register.pending]: (state) => {
 			state.isLoading = true;
-			state.error = null;
+			state.errorRegister = null;
 		},
 		[register.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
@@ -26,10 +28,11 @@ const authSlice = createSlice({
 		},
 		[register.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			state.error = payload;
+			state.errorRegister = payload;
 		},
 		[login.pending]: (state) => {
 			state.isLoading = true;
+			state.errorLogin = null;
 		},
 		[login.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
@@ -39,10 +42,12 @@ const authSlice = createSlice({
 		},
 		[login.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			state.error = payload;
+			state.errorLogin = payload;
 		},
 		[logout.pending]: (state) => {
 			state.isLoading = true;
+			state.errorLogin = null;
+			state.errorRegister = null;
 		},
 		[logout.fulfilled]: (state) => {
 			state.user = { name: null, email: null };

@@ -4,8 +4,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
-import 'react-toastify/dist/ReactToastify.css';
-import { selectError } from "redux/auth/auth-selectors";
+import { selectErrorRegister } from "redux/auth/auth-selectors";
 import { Container } from "components/Container/Container";
 import { register } from "redux/auth/auth-operations";
 import { Form, FormWrapper, FormField, FormLable, AddButton, Text, LinkToLogin } from "./RegisterPage.styled"
@@ -13,7 +12,7 @@ import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
 
 export const RegisterPage = () => {
 	const dispatch = useDispatch();
-	const error = useSelector(selectError);
+	const error = useSelector(selectErrorRegister);
 
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -44,7 +43,7 @@ export const RegisterPage = () => {
 	}
 
 	return <Container text="Registration">
-		{error && <ErrorMessage text={error} />}
+		{error && <ErrorMessage text="Try again" />}
 		<Form onSubmit={registrationFormHandler}>
 			<FormWrapper>
 				<FormField type="text" name="name" value={name} placeholder="Your name" required onChange={handleChange} />
