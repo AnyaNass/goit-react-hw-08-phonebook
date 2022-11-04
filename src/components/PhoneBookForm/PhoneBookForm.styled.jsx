@@ -6,13 +6,15 @@ export const Form = styled.form`
 `
 export const FormWrapper = styled.label`
 position: relative;
+display: block;
 `
 
 export const FormLable = styled.span`
 	color: white;
 	position: absolute;
-	top: 30px;
+	top: 50%;
 	left: 50px;
+	transform: translateY(-50%);
 	z-index: 1;
 	text-transform: lowercase;
 	font-weight: 100;
