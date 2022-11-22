@@ -3,13 +3,22 @@ import styled from "styled-components";
 export const Nav = styled.nav`
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 8px;
+
+	@media (min-width: 550px) {
+		gap: 12px;
+	}
 `
 
 export const User = styled.div`
 	color: #fff;
-	font-size: 24px;
-	font-weight: 700;
+	font-size: 22px;
+	font-weight: 500;
+
+	@media (min-width: 550px) {
+		font-size: 24px;
+		font-weight: 700;
+	}
 `
 
 export const LogoutButton = styled.button`

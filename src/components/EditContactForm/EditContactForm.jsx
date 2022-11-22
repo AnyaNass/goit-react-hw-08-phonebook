@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useMedia } from 'react-use';
 import { FaUserAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import { MdDone } from "react-icons/md";
-import { editContact } from "redux/contacts/contacts-operations";
-import { EditForm, Label, EditInput, SubmitBtn, CloseEditFormBtn } from "./EditContactForm.styled"
+import { editContact, deleteContact } from "redux/contacts/contacts-operations";
+import { EditForm, Label, EditInput, SubmitBtn, CloseEditFormBtn, ButtonsWrapper } from "./EditContactForm.styled"
 
 export const EditContactForm = ({ closeEditForm, id, contactToUpdate }) => {
 	const dispatch = useDispatch();
+	const isPhone = useMedia('(max-width: 549px)')
 
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
@@ -29,9 +32,15 @@ export const EditContactForm = ({ closeEditForm, id, contactToUpdate }) => {
 			default: return;
 		}
 	}
+
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(editContact([id, { name, number }]))
+		closeEditForm();
+	}
+
+	const handleDeleteContact = () => {
+		dispatch(deleteContact(id));
 		closeEditForm();
 	}
 
@@ -44,8 +53,10 @@ export const EditContactForm = ({ closeEditForm, id, contactToUpdate }) => {
 			<FaPhoneAlt />
 			<EditInput type="tel" name="number" value={number} onChange={handleInputChange} />
 		</Label>
-		<SubmitBtn type="submit" onClick={handleSubmit}><MdDone /></SubmitBtn>
-		<CloseEditFormBtn type="button" onClick={() => closeEditForm()}><IoClose /></CloseEditFormBtn>
+		<ButtonsWrapper>
+			<SubmitBtn type="submit" onClick={handleSubmit}><MdDone /></SubmitBtn>
+			{isPhone ? <CloseEditFormBtn type="button" onClick={handleDeleteContact}><FaRegTrashAlt /></CloseEditFormBtn> : <CloseEditFormBtn type="button" onClick={() => closeEditForm()}><IoClose /></CloseEditFormBtn>}
+		</ButtonsWrapper>
 	</EditForm>
 }
 

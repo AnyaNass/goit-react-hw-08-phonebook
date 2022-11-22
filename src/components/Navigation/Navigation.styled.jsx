@@ -3,7 +3,29 @@ import { NavLink } from "react-router-dom";
 
 export const NavList = styled.ul`
 	display: flex;
-	gap: 12px;
+	gap: 8px;
+
+	@media (min-width: 550px) {
+		gap: 12px;
+	}
+`
+
+export const PhoneSizeButton = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 45px;
+	height: 45px;
+	background-color: #000;
+	color: #fff;
+	font-weight: 900;
+	font-size: 24px;
+	border-radius: 50%;
+	transition: transform 250ms linear;
+
+	:hover, :focus {
+		transform: scale(1.1);
+	}
 `
 
 export const NavItemLink = styled(NavLink)`
@@ -13,7 +35,12 @@ export const NavItemLink = styled(NavLink)`
 	font-size: 24px;
 	font-weight: 700;
 
-	&:hover::after{
+	&.active ${PhoneSizeButton} {
+		border: 1px solid #fff;
+	}
+
+	@media (min-width: 550px) {
+		&:hover::after{
 			opacity: 1;
 			width: 100%;
 		}
@@ -40,6 +67,7 @@ export const NavItemLink = styled(NavLink)`
 		height: 1px;
 		background-color: #fff;
 		opacity: 1;
+	}
 	}
 	}
 `

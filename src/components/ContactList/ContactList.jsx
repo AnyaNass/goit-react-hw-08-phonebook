@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
 import { deleteContact } from 'redux/contacts/contacts-operations';
 import { selectVisibleContacts } from 'redux/contacts/contacts-selectors';
 
@@ -8,9 +9,10 @@ import { List, ListItem, ItemInfo, Info, DeleteButton, EditBtn } from './Contact
 
 import { EditContactForm } from 'components/EditContactForm/EditContactForm';
 
-export const ContactsList = () => {
+export const ContactsList = ({ editContactModal }) => {
 	const dispatch = useDispatch();
 	const visibleContacts = useSelector(selectVisibleContacts);
+	const isPhone = useMedia('(max-width: 549px)')
 
 	const [editForm, setEditForm] = useState(false);
 	const [contactToUpdate, setContactToUpdate] = useState();
@@ -25,7 +27,6 @@ export const ContactsList = () => {
 		setEditForm(false);
 	}
 
-
 	return (
 		<List>
 			{visibleContacts.map(item => {
@@ -36,8 +37,9 @@ export const ContactsList = () => {
 						<Info>{item.number}</Info>
 						{editForm && contactToUpdate.id === item.id && <EditContactForm closeEditForm={closeEditForm} id={item.id} contactToUpdate={contactToUpdate} />}
 					</ItemInfo>
-					<DeleteButton type="button" onClick={() => dispatch(deleteContact(item.id))}><FaRegTrashAlt /></DeleteButton>
-					<EditBtn type="button" onClick={() => handleEdinBtn(item.id)}><FaEdit /></EditBtn>
+					{!isPhone && <DeleteButton type="button" onClick={() => dispatch(deleteContact(item.id))}><FaRegTrashAlt /></DeleteButton>}
+					{!isPhone && <EditBtn type="button" onClick={() => handleEdinBtn(item.id)}><FaEdit /></EditBtn>}
+					{isPhone && <EditBtn type="button" onClick={() => editContactModal(item.id)}><FaEdit /></EditBtn>}
 				</ListItem>
 			})}
 		</List >

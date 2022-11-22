@@ -41,7 +41,7 @@ export const Info = styled.span`
 
 export const DeleteButton = styled.button`
 position: absolute;
-right: -25px;
+right: -10px;
 	width: 50px;
 	height: 50px;
 	background-color: #000;
@@ -53,12 +53,20 @@ right: -25px;
 	transition: transform 250ms linear;
 
 	:hover, :focus {
+		transform: scale(1.1);
+	}
+
+	@media (min-width: 550px) {
+		right: -25px;
+
+		:hover, :focus {
 		transform: scale(1.2);
+	}
 	}
 `
 export const EditBtn = styled.button`
 	position: absolute;
-	right: -75px;
+	right: -10px;
 	top: 50%;
  	transform: translateY(-50%) scale(1);
 	width: 50px;
@@ -75,6 +83,14 @@ export const EditBtn = styled.button`
 	align-items: center;
 
 	:hover, :focus {
+		transform: translateY(-50%) scale(1.1);
+	}
+
+	@media (min-width: 550px) {
+		right: -75px;
+
+		:hover, :focus {
 		transform: translateY(-50%) scale(1.2);
+	}
 	}
 `

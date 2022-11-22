@@ -11,17 +11,21 @@ export const Label = styled.span`
 	color: white;
 	position: absolute;
 	top: 50%;
-	left: 50px;
+	left: 20px;
 	transform: translateY(-50%);
 	z-index: 1;
 	text-transform: lowercase;
 	font-weight: 100;
+
+	@media (min-width: 550px) {
+		left: 50px;
+	}
 `
 export const FilterInput = styled.input`
 	width: 100%;
 	background-color: #000;
 	border: none;
-	padding: 15px 10px 15px 110px;
+	padding: 15px 10px 15px 50px;
 	display: block;
 	outline: none;
 	color: #fff;
@@ -32,5 +36,9 @@ export const FilterInput = styled.input`
 
 	:focus{
 		border-bottom: 1px solid #fff;
+	}
+
+	@media (min-width: 550px) {
+		padding: 15px 10px 15px 110px;
 	}
 `

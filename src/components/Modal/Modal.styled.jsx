@@ -7,6 +7,7 @@ export const Backdrop = styled.div`
 	width: 100%;
 	height: 100%;
 	background-color: rgb(128, 128, 128, 0.7);
+	z-index: 100;
 `
 
 export const ModalContent = styled.div`

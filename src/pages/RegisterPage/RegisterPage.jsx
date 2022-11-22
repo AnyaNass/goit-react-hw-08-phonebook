@@ -6,6 +6,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
 import { selectErrorRegister } from "redux/auth/auth-selectors";
 import { Container } from "components/Container/Container";
+import { Section } from "components/Section/Section";
 import { register } from "redux/auth/auth-operations";
 import { Form, FormWrapper, FormField, FormLable, AddButton, Text, LinkToLogin } from "./RegisterPage.styled"
 import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
@@ -42,7 +43,7 @@ export const RegisterPage = () => {
 		setPassword('');
 	}
 
-	return <Container text="Registration">
+	return <Section> <Container text="Registration">
 		{error && <ErrorMessage text="Try again" />}
 		<Form onSubmit={registrationFormHandler}>
 			<FormWrapper>
@@ -61,4 +62,5 @@ export const RegisterPage = () => {
 		</Form>
 		<Text>Do you already have a profile? <LinkToLogin to="/login">Let's login.</LinkToLogin></Text>
 	</Container>
+	</Section>
 }

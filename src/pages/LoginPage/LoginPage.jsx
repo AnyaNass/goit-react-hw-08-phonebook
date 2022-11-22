@@ -5,9 +5,10 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
 import { login } from "redux/auth/auth-operations";
+import { Section } from "components/Section/Section";
 import { Container } from "components/Container/Container";
 import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
-import { Form, FormWrapper, FormField, FormLable, AddButton } from "./LoginPage.styled";
+import { Form, FormWrapper, FormField, FormLable, AddButton, Text, LinkToRegistration } from "./LoginPage.styled";
 
 
 export const LoginPage = () => {
@@ -37,7 +38,7 @@ export const LoginPage = () => {
 		setPassword('');
 	}
 
-	return <Container text="Login">
+	return <Section> <Container text="Login">
 		{error && <ErrorMessage text="Wrong email or password" />}
 		<Form onSubmit={loginFormHandler}>
 			<FormWrapper>
@@ -51,5 +52,7 @@ export const LoginPage = () => {
 			</FormWrapper>
 			<AddButton type="submit"><FiLogIn /></AddButton>
 		</Form>
+		<Text>Don't have an account yet? <LinkToRegistration to="/">Let's registration.</LinkToRegistration></Text>
 	</Container>
+	</Section>
 }
